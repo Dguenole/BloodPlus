@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fichier build.xml pour Apache Ant (utilisé par NetBeans) -->
+<project name="BloodPlus" default="default" basedir=".">
+    <description>Builds, tests, and runs the project BloodPlus.</description>
+    <import file="nbproject/build-impl.xml"/>
+</project>

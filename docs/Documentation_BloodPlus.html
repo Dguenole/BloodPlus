@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documentation_BloodPlus</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#bloodplus---application-de-gestion-de-banque-de-sang"
+id="toc-bloodplus---application-de-gestion-de-banque-de-sang">🩸
+BloodPlus - Application de Gestion de Banque de Sang</a>
+<ul>
+<li><a href="#documentation-complète"
+id="toc-documentation-complète">Documentation Complète</a></li>
+</ul></li>
+<li><a href="#table-des-matières" id="toc-table-des-matières">Table des
+Matières</a></li>
+<li><a href="#présentation-du-projet" id="toc-présentation-du-projet">1.
+Présentation du Projet</a>
+<ul>
+<li><a href="#objectif" id="toc-objectif">1.1 Objectif</a></li>
+<li><a href="#technologies-utilisées"
+id="toc-technologies-utilisées">1.2 Technologies Utilisées</a></li>
+<li><a href="#fonctionnalités-principales"
+id="toc-fonctionnalités-principales">1.3 Fonctionnalités
+Principales</a></li>
+</ul></li>
+<li><a href="#architecture-technique" id="toc-architecture-technique">2.
+Architecture Technique</a>
+<ul>
+<li><a href="#pattern-mvc-modèle-vue-contrôleur"
+id="toc-pattern-mvc-modèle-vue-contrôleur">2.1 Pattern MVC
+(Modèle-Vue-Contrôleur)</a></li>
+<li><a href="#pattern-dao-data-access-object"
+id="toc-pattern-dao-data-access-object">2.2 Pattern DAO (Data Access
+Object)</a></li>
+<li><a href="#pattern-singleton" id="toc-pattern-singleton">2.3 Pattern
+Singleton</a></li>
+</ul></li>
+<li><a href="#installation-et-configuration"
+id="toc-installation-et-configuration">3. Installation et
+Configuration</a>
+<ul>
+<li><a href="#prérequis" id="toc-prérequis">3.1 Prérequis</a></li>
+<li><a href="#installation-de-la-base-de-données"
+id="toc-installation-de-la-base-de-données">3.2 Installation de la Base
+de Données</a></li>
+<li><a href="#configuration-de-la-connexion"
+id="toc-configuration-de-la-connexion">3.3 Configuration de la
+Connexion</a></li>
+<li><a href="#compilation-et-exécution"
+id="toc-compilation-et-exécution">3.4 Compilation et Exécution</a>
+<ul>
+<li><a href="#via-le-terminal" id="toc-via-le-terminal">Via le Terminal
+:</a></li>
+<li><a href="#via-netbeans" id="toc-via-netbeans">Via NetBeans
+:</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#structure-de-la-base-de-données"
+id="toc-structure-de-la-base-de-données">4. Structure de la Base de
+Données</a>
+<ul>
+<li><a href="#schéma-relationnel" id="toc-schéma-relationnel">4.1 Schéma
+Relationnel</a></li>
+<li><a href="#tables-détaillées" id="toc-tables-détaillées">4.2 Tables
+Détaillées</a>
+<ul>
+<li><a href="#table-donneurs" id="toc-table-donneurs">Table
+<code>donneurs</code></a></li>
+<li><a href="#table-dons" id="toc-table-dons">Table
+<code>dons</code></a></li>
+<li><a href="#table-stocks_sanguins"
+id="toc-table-stocks_sanguins">Table
+<code>stocks_sanguins</code></a></li>
+<li><a href="#table-hopitaux" id="toc-table-hopitaux">Table
+<code>hopitaux</code></a></li>
+<li><a href="#table-distributions" id="toc-table-distributions">Table
+<code>distributions</code></a></li>
+<li><a href="#table-utilisateurs" id="toc-table-utilisateurs">Table
+<code>utilisateurs</code></a></li>
+<li><a href="#table-actions_log" id="toc-table-actions_log">Table
+<code>actions_log</code></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#guide-utilisateur" id="toc-guide-utilisateur">5. Guide
+Utilisateur</a>
+<ul>
+<li><a href="#connexion" id="toc-connexion">5.1 Connexion</a>
+<ul>
+<li><a href="#comptes-par-défaut" id="toc-comptes-par-défaut">Comptes
+par défaut :</a></li>
+</ul></li>
+<li><a href="#navigation" id="toc-navigation">5.2 Navigation</a></li>
+<li><a href="#opérations-communes" id="toc-opérations-communes">5.3
+Opérations Communes</a>
+<ul>
+<li><a href="#ajouter-un-élément" id="toc-ajouter-un-élément">Ajouter un
+élément :</a></li>
+<li><a href="#modifier-un-élément" id="toc-modifier-un-élément">Modifier
+un élément :</a></li>
+<li><a href="#supprimer-un-élément"
+id="toc-supprimer-un-élément">Supprimer un élément :</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#modules-de-lapplication"
+id="toc-modules-de-lapplication">6. Modules de l’Application</a>
+<ul>
+<li><a href="#tableau-de-bord" id="toc-tableau-de-bord">6.1 Tableau de
+Bord</a></li>
+<li><a href="#gestion-des-donneurs" id="toc-gestion-des-donneurs">6.2
+Gestion des Donneurs</a></li>
+<li><a href="#gestion-des-dons" id="toc-gestion-des-dons">6.3 Gestion
+des Dons</a></li>
+<li><a href="#gestion-des-stocks" id="toc-gestion-des-stocks">6.4
+Gestion des Stocks</a></li>
+<li><a href="#gestion-des-hôpitaux" id="toc-gestion-des-hôpitaux">6.5
+Gestion des Hôpitaux</a></li>
+<li><a href="#gestion-des-distributions"
+id="toc-gestion-des-distributions">6.6 Gestion des
+Distributions</a></li>
+<li><a href="#gestion-des-utilisateurs-admin-uniquement"
+id="toc-gestion-des-utilisateurs-admin-uniquement">6.7 Gestion des
+Utilisateurs (Admin uniquement)</a></li>
+<li><a href="#historique-des-actions-admin-uniquement"
+id="toc-historique-des-actions-admin-uniquement">6.8 Historique des
+Actions (Admin uniquement)</a></li>
+</ul></li>
+<li><a href="#système-dauthentification"
+id="toc-système-dauthentification">7. Système d’Authentification</a>
+<ul>
+<li><a href="#processus-de-connexion"
+id="toc-processus-de-connexion">7.1 Processus de Connexion</a></li>
+<li><a href="#gestion-de-session" id="toc-gestion-de-session">7.2
+Gestion de Session</a></li>
+</ul></li>
+<li><a href="#gestion-des-rôles-et-permissions"
+id="toc-gestion-des-rôles-et-permissions">8. Gestion des Rôles et
+Permissions</a>
+<ul>
+<li><a href="#rôles-disponibles" id="toc-rôles-disponibles">8.1 Rôles
+Disponibles</a>
+<ul>
+<li><a href="#admin-administrateur" id="toc-admin-administrateur">ADMIN
+(Administrateur)</a></li>
+<li><a href="#operateur-opérateur"
+id="toc-operateur-opérateur">OPERATEUR (Opérateur)</a></li>
+<li><a href="#lecteur-lecture-seule"
+id="toc-lecteur-lecture-seule">LECTEUR (Lecture seule)</a></li>
+</ul></li>
+<li><a href="#matrice-des-permissions"
+id="toc-matrice-des-permissions">8.2 Matrice des Permissions</a></li>
+</ul></li>
+<li><a href="#journalisation-des-actions"
+id="toc-journalisation-des-actions">9. Journalisation des Actions</a>
+<ul>
+<li><a href="#actions-tracées" id="toc-actions-tracées">9.1 Actions
+Tracées</a></li>
+<li><a href="#entités-tracées" id="toc-entités-tracées">9.2 Entités
+Tracées</a></li>
+<li><a href="#format-dun-log" id="toc-format-dun-log">9.3 Format d’un
+Log</a></li>
+</ul></li>
+<li><a href="#structure-du-code-source"
+id="toc-structure-du-code-source">10. Structure du Code Source</a>
+<ul>
+<li><a href="#arborescence-du-projet"
+id="toc-arborescence-du-projet">10.1 Arborescence du Projet</a></li>
+<li><a href="#description-des-packages"
+id="toc-description-des-packages">10.2 Description des Packages</a>
+<ul>
+<li><a href="#package-model" id="toc-package-model">Package
+<code>model</code></a></li>
+<li><a href="#package-dao" id="toc-package-dao">Package
+<code>dao</code></a></li>
+<li><a href="#package-service" id="toc-package-service">Package
+<code>service</code></a></li>
+<li><a href="#package-ui" id="toc-package-ui">Package
+<code>ui</code></a></li>
+<li><a href="#package-utils" id="toc-package-utils">Package
+<code>utils</code></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#diagrammes" id="toc-diagrammes">11. Diagrammes</a>
+<ul>
+<li><a href="#diagramme-de-cas-dutilisation"
+id="toc-diagramme-de-cas-dutilisation">11.1 Diagramme de Cas
+d’Utilisation</a></li>
+<li><a href="#diagramme-de-séquence---enregistrement-dun-don"
+id="toc-diagramme-de-séquence---enregistrement-dun-don">11.2 Diagramme
+de Séquence - Enregistrement d’un Don</a></li>
+</ul></li>
+<li><a href="#annexes" id="toc-annexes">12. Annexes</a>
+<ul>
+<li><a href="#groupes-sanguins" id="toc-groupes-sanguins">12.1 Groupes
+Sanguins</a></li>
+<li><a href="#règles-métier" id="toc-règles-métier">12.2 Règles
+Métier</a>
+<ul>
+<li><a href="#don-de-sang" id="toc-don-de-sang">Don de Sang</a></li>
+<li><a href="#conservation-du-sang"
+id="toc-conservation-du-sang">Conservation du Sang</a></li>
+<li><a href="#seuils-dalerte-stock" id="toc-seuils-dalerte-stock">Seuils
+d’Alerte Stock</a></li>
+</ul></li>
+<li><a href="#fonctionnalités-de-distribution-automatisée"
+id="toc-fonctionnalités-de-distribution-automatisée">12.3
+Fonctionnalités de Distribution Automatisée</a>
+<ul>
+<li><a href="#diminution-automatique-du-stock"
+id="toc-diminution-automatique-du-stock">Diminution Automatique du
+Stock</a></li>
+<li><a href="#rafraîchissement-du-dashboard"
+id="toc-rafraîchissement-du-dashboard">Rafraîchissement du
+Dashboard</a></li>
+<li><a href="#code-de-la-méthode-diminuerstock"
+id="toc-code-de-la-méthode-diminuerstock">Code de la méthode
+<code>diminuerStock()</code></a></li>
+</ul></li>
+<li><a href="#codes-derreur" id="toc-codes-derreur">12.4 Codes
+d’Erreur</a></li>
+<li><a href="#contact-et-support" id="toc-contact-et-support">12.4
+Contact et Support</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="bloodplus---application-de-gestion-de-banque-de-sang">🩸
+BloodPlus - Application de Gestion de Banque de Sang</h1>
+<h2 id="documentation-complète">Documentation Complète</h2>
+<hr />
+<h1 id="table-des-matières">Table des Matières</h1>
+<ol type="1">
+<li><a href="#1-présentation-du-projet">Présentation du Projet</a></li>
+<li><a href="#2-architecture-technique">Architecture Technique</a></li>
+<li><a href="#3-installation-et-configuration">Installation et
+Configuration</a></li>
+<li><a href="#4-structure-de-la-base-de-données">Structure de la Base de
+Données</a></li>
+<li><a href="#5-guide-utilisateur">Guide Utilisateur</a></li>
+<li><a href="#6-modules-de-lapplication">Modules de
+l’Application</a></li>
+<li><a href="#7-système-dauthentification">Système
+d’Authentification</a></li>
+<li><a href="#8-gestion-des-rôles-et-permissions">Gestion des Rôles et
+Permissions</a></li>
+<li><a href="#9-journalisation-des-actions">Journalisation des
+Actions</a></li>
+<li><a href="#10-structure-du-code-source">Structure du Code
+Source</a></li>
+<li><a href="#11-diagrammes">Diagrammes</a></li>
+<li><a href="#12-annexes">Annexes</a></li>
+</ol>
+<hr />
+<h1 id="présentation-du-projet">1. Présentation du Projet</h1>
+<h2 id="objectif">1.1 Objectif</h2>
+<p><strong>BloodPlus</strong> est une application de bureau développée
+en Java pour la gestion complète d’une banque de sang. Elle permet de
+:</p>
+<ul>
+<li>Gérer les donneurs de sang</li>
+<li>Enregistrer et suivre les dons</li>
+<li>Contrôler les stocks sanguins</li>
+<li>Distribuer le sang aux hôpitaux partenaires</li>
+<li>Surveiller les alertes de stock critique</li>
+<li>Tracer toutes les actions des utilisateurs</li>
+</ul>
+<h2 id="technologies-utilisées">1.2 Technologies Utilisées</h2>
+<table>
+<thead>
+<tr>
+<th>Technologie</th>
+<th>Version</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java</td>
+<td>8+</td>
+<td>Langage de programmation</td>
+</tr>
+<tr>
+<td>Java Swing</td>
+<td>-</td>
+<td>Interface graphique</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>8.0</td>
+<td>Base de données</td>
+</tr>
+<tr>
+<td>MySQL Connector/J</td>
+<td>9.0.0</td>
+<td>Pilote JDBC</td>
+</tr>
+<tr>
+<td>Apache NetBeans</td>
+<td>25</td>
+<td>IDE de développement</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fonctionnalités-principales">1.3 Fonctionnalités
+Principales</h2>
+<ul>
+<li>✅ Gestion complète des donneurs (CRUD)</li>
+<li>✅ Enregistrement et validation des dons</li>
+<li>✅ Suivi des stocks sanguins par groupe</li>
+<li>✅ Gestion des hôpitaux partenaires</li>
+<li>✅ Distribution du sang avec traçabilité</li>
+<li>✅ Alertes automatiques de stock critique</li>
+<li>✅ Système d’authentification multi-rôles</li>
+<li>✅ Journal d’audit complet</li>
+</ul>
+<hr />
+<h1 id="architecture-technique">2. Architecture Technique</h1>
+<h2 id="pattern-mvc-modèle-vue-contrôleur">2.1 Pattern MVC
+(Modèle-Vue-Contrôleur)</h2>
+<p>L’application suit le pattern <strong>MVC</strong> pour séparer les
+responsabilités :</p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                        PRÉSENTATION                          │
+│                      (Package: ui)                           │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────────────────┐│
+│  │ LoginFrame  │ │ MainFrame   │ │ Panels (Donneur, Don...)││
+│  └─────────────┘ └─────────────┘ └─────────────────────────┘│
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      ACCÈS AUX DONNÉES                       │
+│                      (Package: dao)                          │
+│  ┌────────────────┐ ┌───────────────┐ ┌──────────────────┐  │
+│  │ DonneurDAO     │ │ DonDAO        │ │ StockSanguinDAO  │  │
+│  │ HopitalDAO     │ │ DistributionDAO│ │ UtilisateurDAO  │  │
+│  │ ActionLogDAO   │ │ AlerteDAO     │ │ DatabaseConnection│ │
+│  └────────────────┘ └───────────────┘ └──────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                         MODÈLES                              │
+│                      (Package: model)                        │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────────┐ │
+│  │ Donneur      │ │ Don          │ │ StockSanguin         │ │
+│  │ Hopital      │ │ Distribution │ │ Utilisateur          │ │
+│  │ ActionLog    │ │ Alerte       │ │ GroupeSanguin        │ │
+│  └──────────────┘ └──────────────┘ └──────────────────────┘ │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                     BASE DE DONNÉES                          │
+│                        MySQL                                 │
+│                    (bloodplus)                               │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+<h2 id="pattern-dao-data-access-object">2.2 Pattern DAO (Data Access
+Object)</h2>
+<p>Chaque entité a son propre DAO qui encapsule toutes les opérations
+SQL :</p>
+<ul>
+<li><strong>Create</strong> : Ajouter un enregistrement</li>
+<li><strong>Read</strong> : Lire/rechercher des enregistrements</li>
+<li><strong>Update</strong> : Modifier un enregistrement</li>
+<li><strong>Delete</strong> : Supprimer un enregistrement</li>
+</ul>
+<h2 id="pattern-singleton">2.3 Pattern Singleton</h2>
+<p>Utilisé pour : - <code>DatabaseConnection</code> : Connexion unique à
+la base de données - <code>Session</code> : Gestion de l’utilisateur
+connecté</p>
+<hr />
+<h1 id="installation-et-configuration">3. Installation et
+Configuration</h1>
+<h2 id="prérequis">3.1 Prérequis</h2>
+<ul>
+<li>Java JDK 8 ou supérieur</li>
+<li>MySQL Server 8.0</li>
+<li>Apache NetBeans (recommandé) ou tout autre IDE Java</li>
+</ul>
+<h2 id="installation-de-la-base-de-données">3.2 Installation de la Base
+de Données</h2>
+<ol type="1">
+<li><p>Démarrer MySQL Server</p></li>
+<li><p>Se connecter à MySQL :</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-u</span> root <span class="at">-p</span></span></code></pre></div></li>
+<li><p>Exécuter le script SQL :</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> /chemin/vers/BloodPlus/database/bloodplus.sql</span></code></pre></div></li>
+</ol>
+<h2 id="configuration-de-la-connexion">3.3 Configuration de la
+Connexion</h2>
+<p>Modifier le fichier <code>src/dao/DatabaseConnection.java</code> si
+nécessaire :</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="bu">String</span> <span class="bu">URL</span> <span class="op">=</span> <span class="st">&quot;jdbc:mysql://localhost:3306/bloodplus&quot;</span><span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="bu">String</span> USER <span class="op">=</span> <span class="st">&quot;root&quot;</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="bu">String</span> PASSWORD <span class="op">=</span> <span class="st">&quot;votre_mot_de_passe&quot;</span><span class="op">;</span></span></code></pre></div>
+<h2 id="compilation-et-exécution">3.4 Compilation et Exécution</h2>
+<h3 id="via-le-terminal">Via le Terminal :</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /chemin/vers/BloodPlus</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compilation</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">javac</span> <span class="at">-d</span> build/classes <span class="at">-cp</span> <span class="st">&quot;lib/*&quot;</span> src/model/<span class="pp">*</span>.java src/dao/<span class="pp">*</span>.java src/service/<span class="pp">*</span>.java src/utils/<span class="pp">*</span>.java src/ui/<span class="pp">*</span>.java</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Exécution</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> build/classes</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-cp</span> <span class="st">&quot;.:../../lib/*&quot;</span> ui.LoginFrame</span></code></pre></div>
+<h3 id="via-netbeans">Via NetBeans :</h3>
+<ol type="1">
+<li>Ouvrir le projet dans NetBeans</li>
+<li>Clic droit → “Run”</li>
+</ol>
+<hr />
+<h1 id="structure-de-la-base-de-données">4. Structure de la Base de
+Données</h1>
+<h2 id="schéma-relationnel">4.1 Schéma Relationnel</h2>
+<pre><code>┌─────────────────┐       ┌─────────────────┐
+│    donneurs     │       │   utilisateurs  │
+├─────────────────┤       ├─────────────────┤
+│ id (PK)         │       │ id (PK)         │
+│ nom             │       │ username        │
+│ prenom          │       │ password        │
+│ date_naissance  │       │ nom_complet     │
+│ sexe            │       │ role            │
+│ groupe_sanguin  │       │ actif           │
+│ telephone       │       │ date_creation   │
+│ email           │       │ derniere_connexion│
+│ adresse         │       └─────────────────┘
+│ ville           │
+│ eligible        │
+│ derniere_visite │
+│ notes           │
+└────────┬────────┘
+         │
+         │ 1:N
+         ▼
+┌─────────────────┐       ┌─────────────────┐
+│      dons       │       │    hopitaux     │
+├─────────────────┤       ├─────────────────┤
+│ id (PK)         │       │ id (PK)         │
+│ donneur_id (FK) │───┐   │ nom             │
+│ date_don        │   │   │ adresse         │
+│ quantite        │   │   │ ville           │
+│ statut          │   │   │ telephone       │
+│ notes           │   │   │ email           │
+└────────┬────────┘   │   │ responsable     │
+         │            │   │ actif           │
+         │ 1:1        │   └────────┬────────┘
+         ▼            │            │
+┌─────────────────┐   │            │ 1:N
+│ stocks_sanguins │   │            ▼
+├─────────────────┤   │   ┌─────────────────┐
+│ id (PK)         │   │   │  distributions  │
+│ groupe_sanguin  │   │   ├─────────────────┤
+│ quantite        │   │   │ id (PK)         │
+│ date_prelevement│   │   │ hopital_id (FK) │
+│ date_peremption │   │   │ groupe_sanguin  │
+│ don_id (FK)     │───┘   │ quantite        │
+│ statut          │       │ date_distribution│
+└─────────────────┘       │ statut          │
+                          │ motif           │
+                          └─────────────────┘
+
+┌─────────────────┐
+│   actions_log   │
+├─────────────────┤
+│ id (PK)         │
+│ utilisateur_id  │
+│ utilisateur_nom │
+│ action          │
+│ entite          │
+│ description     │
+│ date_action     │
+└─────────────────┘</code></pre>
+<h2 id="tables-détaillées">4.2 Tables Détaillées</h2>
+<h3 id="table-donneurs">Table <code>donneurs</code></h3>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>INT</td>
+<td>Identifiant unique (auto-incrémenté)</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>VARCHAR(100)</td>
+<td>Nom du donneur</td>
+</tr>
+<tr>
+<td>prenom</td>
+<td>VARCHAR(100)</td>
+<td>Prénom du donneur</td>
+</tr>
+<tr>
+<td>date_naissance</td>
+<td>DATE</td>
+<td>Date de naissance</td>
+</tr>
+<tr>
+<td>sexe</td>
+<td>ENUM(‘M’,‘F’)</td>
+<td>Sexe</td>
+</tr>
+<tr>
+<td>groupe_sanguin</td>
+<td>VARCHAR(5)</td>
+<td>Groupe sanguin (A+, B-, O+, etc.)</td>
+</tr>
+<tr>
+<td>telephone</td>
+<td>VARCHAR(20)</td>
+<td>Numéro de téléphone</td>
+</tr>
+<tr>
+<td>email</td>
+<td>VARCHAR(100)</td>
+<td>Adresse email</td>
+</tr>
+<tr>
+<td>adresse</td>
+<td>TEXT</td>
+<td>Adresse complète</td>
+</tr>
+<tr>
+<td>ville</td>
+<td>VARCHAR(100)</td>
+<td>Ville</td>
+</tr>
+<tr>
+<td>eligible</td>
+<td>BOOLEAN</td>
+<td>Éligibilité au don</td>
+</tr>
+<tr>
+<td>derniere_visite</td>
+<td>DATE</td>
+<td>Date du dernier don</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>TEXT</td>
+<td>Notes supplémentaires</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-dons">Table <code>dons</code></h3>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>INT</td>
+<td>Identifiant unique</td>
+</tr>
+<tr>
+<td>donneur_id</td>
+<td>INT</td>
+<td>Référence au donneur</td>
+</tr>
+<tr>
+<td>date_don</td>
+<td>DATETIME</td>
+<td>Date et heure du don</td>
+</tr>
+<tr>
+<td>quantite</td>
+<td>INT</td>
+<td>Quantité en ml (défaut: 450)</td>
+</tr>
+<tr>
+<td>statut</td>
+<td>ENUM</td>
+<td>EN_ATTENTE, VALIDE, REJETE</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>TEXT</td>
+<td>Remarques</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-stocks_sanguins">Table <code>stocks_sanguins</code></h3>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>INT</td>
+<td>Identifiant unique</td>
+</tr>
+<tr>
+<td>groupe_sanguin</td>
+<td>VARCHAR(5)</td>
+<td>Groupe sanguin</td>
+</tr>
+<tr>
+<td>quantite</td>
+<td>INT</td>
+<td>Quantité en ml</td>
+</tr>
+<tr>
+<td>date_prelevement</td>
+<td>DATE</td>
+<td>Date du prélèvement</td>
+</tr>
+<tr>
+<td>date_peremption</td>
+<td>DATE</td>
+<td>Date d’expiration (42 jours)</td>
+</tr>
+<tr>
+<td>don_id</td>
+<td>INT</td>
+<td>Référence au don d’origine</td>
+</tr>
+<tr>
+<td>statut</td>
+<td>ENUM</td>
+<td>DISPONIBLE, UTILISE, PERIME</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-hopitaux">Table <code>hopitaux</code></h3>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>INT</td>
+<td>Identifiant unique</td>
+</tr>
+<tr>
+<td>nom</td>
+<td>VARCHAR(200)</td>
+<td>Nom de l’hôpital</td>
+</tr>
+<tr>
+<td>adresse</td>
+<td>TEXT</td>
+<td>Adresse</td>
+</tr>
+<tr>
+<td>ville</td>
+<td>VARCHAR(100)</td>
+<td>Ville</td>
+</tr>
+<tr>
+<td>telephone</td>
+<td>VARCHAR(20)</td>
+<td>Téléphone</td>
+</tr>
+<tr>
+<td>email</td>
+<td>VARCHAR(100)</td>
+<td>Email</td>
+</tr>
+<tr>
+<td>responsable</td>
+<td>VARCHAR(100)</td>
+<td>Nom du responsable</td>
+</tr>
+<tr>
+<td>actif</td>
+<td>BOOLEAN</td>
+<td>Statut actif/inactif</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-distributions">Table <code>distributions</code></h3>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>INT</td>
+<td>Identifiant unique</td>
+</tr>
+<tr>
+<td>hopital_id</td>
+<td>INT</td>
+<td>Référence à l’hôpital</td>
+</tr>
+<tr>
+<td>groupe_sanguin</td>
+<td>VARCHAR(5)</td>
+<td>Groupe sanguin distribué</td>
+</tr>
+<tr>
+<td>quantite</td>
+<td>INT</td>
+<td>Quantité en ml</td>
+</tr>
+<tr>
+<td>date_distribution</td>
+<td>DATETIME</td>
+<td>Date de distribution</td>
+</tr>
+<tr>
+<td>statut</td>
+<td>ENUM</td>
+<td>EN_COURS, LIVREE, ANNULEE</td>
+</tr>
+<tr>
+<td>motif</td>
+<td>TEXT</td>
+<td>Motif de la demande</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-utilisateurs">Table <code>utilisateurs</code></h3>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>INT</td>
+<td>Identifiant unique</td>
+</tr>
+<tr>
+<td>username</td>
+<td>VARCHAR(50)</td>
+<td>Nom d’utilisateur (unique)</td>
+</tr>
+<tr>
+<td>password</td>
+<td>VARCHAR(255)</td>
+<td>Mot de passe</td>
+</tr>
+<tr>
+<td>nom_complet</td>
+<td>VARCHAR(100)</td>
+<td>Nom complet</td>
+</tr>
+<tr>
+<td>role</td>
+<td>ENUM</td>
+<td>ADMIN, OPERATEUR, LECTEUR</td>
+</tr>
+<tr>
+<td>actif</td>
+<td>BOOLEAN</td>
+<td>Compte actif</td>
+</tr>
+<tr>
+<td>date_creation</td>
+<td>DATETIME</td>
+<td>Date de création</td>
+</tr>
+<tr>
+<td>derniere_connexion</td>
+<td>DATETIME</td>
+<td>Dernière connexion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-actions_log">Table <code>actions_log</code></h3>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>INT</td>
+<td>Identifiant unique</td>
+</tr>
+<tr>
+<td>utilisateur_id</td>
+<td>INT</td>
+<td>ID de l’utilisateur</td>
+</tr>
+<tr>
+<td>utilisateur_nom</td>
+<td>VARCHAR(100)</td>
+<td>Nom de l’utilisateur</td>
+</tr>
+<tr>
+<td>action</td>
+<td>VARCHAR(50)</td>
+<td>Type d’action</td>
+</tr>
+<tr>
+<td>entite</td>
+<td>VARCHAR(50)</td>
+<td>Entité concernée</td>
+</tr>
+<tr>
+<td>description</td>
+<td>TEXT</td>
+<td>Description détaillée</td>
+</tr>
+<tr>
+<td>date_action</td>
+<td>DATETIME</td>
+<td>Horodatage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="guide-utilisateur">5. Guide Utilisateur</h1>
+<h2 id="connexion">5.1 Connexion</h2>
+<ol type="1">
+<li>Lancer l’application</li>
+<li>Entrer le nom d’utilisateur</li>
+<li>Entrer le mot de passe</li>
+<li>Cliquer sur “Se Connecter”</li>
+</ol>
+<h3 id="comptes-par-défaut">Comptes par défaut :</h3>
+<table>
+<thead>
+<tr>
+<th>Utilisateur</th>
+<th>Mot de passe</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin</td>
+<td>admin123</td>
+<td>ADMIN</td>
+</tr>
+<tr>
+<td>operateur</td>
+<td>oper123</td>
+<td>OPERATEUR</td>
+</tr>
+<tr>
+<td>lecteur</td>
+<td>lect123</td>
+<td>LECTEUR</td>
+</tr>
+</tbody>
+</table>
+<h2 id="navigation">5.2 Navigation</h2>
+<p>L’interface principale comprend : - <strong>Barre latérale</strong> :
+Boutons de navigation vers les différents modules - <strong>Zone
+centrale</strong> : Affichage du module sélectionné - <strong>Barre
+d’état</strong> : Informations sur l’utilisateur connecté</p>
+<h2 id="opérations-communes">5.3 Opérations Communes</h2>
+<h3 id="ajouter-un-élément">Ajouter un élément :</h3>
+<ol type="1">
+<li>Cliquer sur le bouton “Ajouter”</li>
+<li>Remplir le formulaire</li>
+<li>Cliquer sur “Enregistrer”</li>
+</ol>
+<h3 id="modifier-un-élément">Modifier un élément :</h3>
+<ol type="1">
+<li>Sélectionner l’élément dans la liste</li>
+<li>Cliquer sur “Modifier”</li>
+<li>Modifier les champs</li>
+<li>Cliquer sur “Enregistrer”</li>
+</ol>
+<h3 id="supprimer-un-élément">Supprimer un élément :</h3>
+<ol type="1">
+<li>Sélectionner l’élément</li>
+<li>Cliquer sur “Supprimer”</li>
+<li>Confirmer la suppression</li>
+</ol>
+<hr />
+<h1 id="modules-de-lapplication">6. Modules de l’Application</h1>
+<h2 id="tableau-de-bord">6.1 Tableau de Bord</h2>
+<p>Le tableau de bord affiche : - Statistiques globales (donneurs, dons,
+stock total) - Alertes de stock critique - Graphique des stocks par
+groupe sanguin - Dons récents</p>
+<h2 id="gestion-des-donneurs">6.2 Gestion des Donneurs</h2>
+<p>Fonctionnalités : - Liste des donneurs avec recherche -
+Ajout/modification/suppression de donneurs - Filtrage par groupe sanguin
+- Vérification de l’éligibilité</p>
+<p>Champs d’un donneur : - Nom et prénom - Date de naissance - Sexe
+(M/F) - Groupe sanguin - Coordonnées (téléphone, email) - Adresse et
+ville - Statut d’éligibilité - Notes</p>
+<h2 id="gestion-des-dons">6.3 Gestion des Dons</h2>
+<p>Fonctionnalités : - Enregistrement d’un nouveau don - Validation ou
+rejet des dons - Historique des dons par donneur - Conversion
+automatique en stock</p>
+<p>Statuts d’un don : - <strong>EN_ATTENTE</strong> : Don enregistré, en
+attente de validation - <strong>VALIDE</strong> : Don validé et ajouté
+au stock - <strong>REJETE</strong> : Don rejeté (problème médical,
+etc.)</p>
+<p>Quantité standard : <strong>450 ml</strong> (configurable de 200 à
+500 ml)</p>
+<h2 id="gestion-des-stocks">6.4 Gestion des Stocks</h2>
+<p>Fonctionnalités : - Vue d’ensemble des stocks par groupe sanguin -
+Suivi des dates de péremption - Alertes automatiques pour stocks
+critiques - Gestion des statuts (disponible, utilisé, périmé)</p>
+<p>Règles métier : - Durée de vie du sang : <strong>42 jours</strong> -
+Seuil d’alerte critique : configurable par groupe - Marquage automatique
+des produits périmés</p>
+<h2 id="gestion-des-hôpitaux">6.5 Gestion des Hôpitaux</h2>
+<p>Fonctionnalités : - Répertoire des hôpitaux partenaires -
+Informations de contact - Historique des distributions -
+Activation/désactivation</p>
+<h2 id="gestion-des-distributions">6.6 Gestion des Distributions</h2>
+<p>Fonctionnalités : - Création de demandes de distribution - Suivi du
+statut de livraison - Déduction automatique du stock - Historique par
+hôpital</p>
+<p>Statuts de distribution : - <strong>EN_COURS</strong> : Demande créée
+- <strong>LIVREE</strong> : Distribution effectuée -
+<strong>ANNULEE</strong> : Distribution annulée</p>
+<h2 id="gestion-des-utilisateurs-admin-uniquement">6.7 Gestion des
+Utilisateurs (Admin uniquement)</h2>
+<p>Fonctionnalités : - Création de comptes utilisateur - Attribution des
+rôles - Activation/désactivation des comptes - Réinitialisation des mots
+de passe</p>
+<h2 id="historique-des-actions-admin-uniquement">6.8 Historique des
+Actions (Admin uniquement)</h2>
+<p>Fonctionnalités : - Visualisation de toutes les actions - Filtrage
+par utilisateur, action, entité - Recherche textuelle - Export des
+données</p>
+<hr />
+<h1 id="système-dauthentification">7. Système d’Authentification</h1>
+<h2 id="processus-de-connexion">7.1 Processus de Connexion</h2>
+<pre><code>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│ LoginFrame  │────▶│UtilisateurDAO────▶│   MySQL     │
+│             │     │.authentifier()    │             │
+└─────────────┘     └─────────────┘     └─────────────┘
+       │                   │
+       │                   ▼
+       │            ┌─────────────┐
+       │            │  Session    │
+       │            │.connecter() │
+       │            └─────────────┘
+       │                   │
+       ▼                   ▼
+┌─────────────┐     ┌─────────────┐
+│ MainFrame   │◀────│ActionLogDAO │
+│             │     │.logConnexion│
+└─────────────┘     └─────────────┘</code></pre>
+<h2 id="gestion-de-session">7.2 Gestion de Session</h2>
+<p>La classe <code>Session</code> (Singleton) maintient : -
+L’utilisateur actuellement connecté - Son rôle et ses permissions - La
+date/heure de connexion</p>
+<p>Méthodes principales : - <code>getInstance()</code> : Obtenir
+l’instance unique - <code>connecter(Utilisateur)</code> : Démarrer une
+session - <code>deconnecter()</code> : Terminer la session -
+<code>getUtilisateurConnecte()</code> : Obtenir l’utilisateur courant -
+<code>estAdmin()</code> / <code>estOperateur()</code> /
+<code>estLecteur()</code> : Vérifier le rôle</p>
+<hr />
+<h1 id="gestion-des-rôles-et-permissions">8. Gestion des Rôles et
+Permissions</h1>
+<h2 id="rôles-disponibles">8.1 Rôles Disponibles</h2>
+<h3 id="admin-administrateur">ADMIN (Administrateur)</h3>
+<p>Accès complet à toutes les fonctionnalités : - ✅ Gestion des
+donneurs - ✅ Gestion des dons - ✅ Gestion des stocks - ✅ Gestion des
+hôpitaux - ✅ Gestion des distributions - ✅ Gestion des utilisateurs -
+✅ Consultation de l’historique</p>
+<h3 id="operateur-opérateur">OPERATEUR (Opérateur)</h3>
+<p>Accès aux opérations courantes : - ✅ Gestion des donneurs - ✅
+Gestion des dons - ✅ Gestion des stocks - ✅ Gestion des hôpitaux - ✅
+Gestion des distributions - ❌ Gestion des utilisateurs - ❌
+Consultation de l’historique</p>
+<h3 id="lecteur-lecture-seule">LECTEUR (Lecture seule)</h3>
+<p>Accès en consultation uniquement : - ✅ Consultation des donneurs -
+✅ Consultation des dons - ✅ Consultation des stocks - ✅ Consultation
+des hôpitaux - ✅ Consultation des distributions - ❌ Modification de
+données - ❌ Gestion des utilisateurs - ❌ Consultation de
+l’historique</p>
+<h2 id="matrice-des-permissions">8.2 Matrice des Permissions</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th style="text-align: center;">Admin</th>
+<th style="text-align: center;">Opérateur</th>
+<th style="text-align: center;">Lecteur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dashboard</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Donneurs - Voir</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Donneurs - Ajouter/Modifier/Supprimer</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Dons - Voir</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Dons - Ajouter/Valider/Rejeter</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Stocks - Voir</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Stocks - Modifier</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Hôpitaux - Voir</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Hôpitaux - Ajouter/Modifier/Supprimer</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Distributions - Voir</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Distributions - Créer/Livrer/Annuler</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Utilisateurs</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Historique</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="journalisation-des-actions">9. Journalisation des Actions</h1>
+<h2 id="actions-tracées">9.1 Actions Tracées</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connexion</td>
+<td>CONNEXION</td>
+<td>Ouverture de session</td>
+</tr>
+<tr>
+<td>Déconnexion</td>
+<td>DECONNEXION</td>
+<td>Fermeture de session</td>
+</tr>
+<tr>
+<td>Ajout</td>
+<td>AJOUTER</td>
+<td>Création d’un enregistrement</td>
+</tr>
+<tr>
+<td>Modification</td>
+<td>MODIFIER</td>
+<td>Modification d’un enregistrement</td>
+</tr>
+<tr>
+<td>Suppression</td>
+<td>SUPPRIMER</td>
+<td>Suppression d’un enregistrement</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>VALIDER</td>
+<td>Validation d’un don</td>
+</tr>
+<tr>
+<td>Rejet</td>
+<td>REJETER</td>
+<td>Rejet d’un don</td>
+</tr>
+<tr>
+<td>Livraison</td>
+<td>LIVRER</td>
+<td>Livraison d’une distribution</td>
+</tr>
+<tr>
+<td>Annulation</td>
+<td>ANNULER</td>
+<td>Annulation d’une opération</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entités-tracées">9.2 Entités Tracées</h2>
+<ul>
+<li>DONNEUR</li>
+<li>DON</li>
+<li>STOCK</li>
+<li>HOPITAL</li>
+<li>DISTRIBUTION</li>
+<li>UTILISATEUR</li>
+<li>SYSTEME</li>
+</ul>
+<h2 id="format-dun-log">9.3 Format d’un Log</h2>
+<pre><code>┌────────────────────────────────────────────────────────────┐
+│ ID: 125                                                     │
+│ Date: 2026-01-20 14:35:22                                  │
+│ Utilisateur: admin (ID: 1)                                 │
+│ Action: AJOUTER                                            │
+│ Entité: DONNEUR                                            │
+│ Description: Ajout du donneur: Jean Dupont (O+)            │
+└────────────────────────────────────────────────────────────┘</code></pre>
+<hr />
+<h1 id="structure-du-code-source">10. Structure du Code Source</h1>
+<h2 id="arborescence-du-projet">10.1 Arborescence du Projet</h2>
+<pre><code>BloodPlus/
+├── build/
+│   └── classes/           # Classes compilées
+│       ├── dao/
+│       ├── model/
+│       ├── service/
+│       ├── ui/
+│       └── utils/
+├── database/
+│   └── bloodplus.sql      # Script de création BDD
+├── docs/
+│   └── Documentation_BloodPlus.md
+├── lib/
+│   └── mysql-connector-j-9.0.0.jar
+├── nbproject/             # Configuration NetBeans
+├── src/
+│   ├── dao/               # Data Access Objects
+│   │   ├── ActionLogDAO.java
+│   │   ├── AlerteDAO.java
+│   │   ├── DatabaseConnection.java
+│   │   ├── DistributionDAO.java
+│   │   ├── DonDAO.java
+│   │   ├── DonneurDAO.java
+│   │   ├── HopitalDAO.java
+│   │   ├── StockSanguinDAO.java
+│   │   └── UtilisateurDAO.java
+│   ├── model/             # Entités métier
+│   │   ├── ActionLog.java
+│   │   ├── Alerte.java
+│   │   ├── Distribution.java
+│   │   ├── Don.java
+│   │   ├── Donneur.java
+│   │   ├── GroupeSanguin.java
+│   │   ├── Hopital.java
+│   │   ├── StockSanguin.java
+│   │   └── Utilisateur.java
+│   ├── service/           # Services métier
+│   │   └── Session.java
+│   ├── ui/                # Interfaces graphiques
+│   │   ├── DashboardPanel.java
+│   │   ├── DistributionPanel.java
+│   │   ├── DonPanel.java
+│   │   ├── DonneurPanel.java
+│   │   ├── HistoriquePanel.java
+│   │   ├── HopitalPanel.java
+│   │   ├── LoginFrame.java
+│   │   ├── MainFrame.java
+│   │   ├── StockPanel.java
+│   │   └── UtilisateurPanel.java
+│   └── utils/             # Utilitaires
+│       ├── DateUtils.java
+│       └── ValidationUtils.java
+├── build.xml
+└── manifest.mf</code></pre>
+<h2 id="description-des-packages">10.2 Description des Packages</h2>
+<h3 id="package-model">Package <code>model</code></h3>
+<p>Contient les classes POJO (Plain Old Java Objects) représentant les
+entités métier. Chaque classe correspond à une table de la base de
+données.</p>
+<h3 id="package-dao">Package <code>dao</code></h3>
+<p>Contient les classes d’accès aux données. Chaque DAO encapsule les
+opérations CRUD pour une entité.</p>
+<h3 id="package-service">Package <code>service</code></h3>
+<p>Contient les services métier, notamment la gestion de session.</p>
+<h3 id="package-ui">Package <code>ui</code></h3>
+<p>Contient les interfaces graphiques Swing (JFrame, JPanel).</p>
+<h3 id="package-utils">Package <code>utils</code></h3>
+<p>Contient les classes utilitaires pour la validation et le
+formatage.</p>
+<hr />
+<h1 id="diagrammes">11. Diagrammes</h1>
+<h2 id="diagramme-de-cas-dutilisation">11.1 Diagramme de Cas
+d’Utilisation</h2>
+<pre><code>                    ┌─────────────────────────────────────┐
+                    │         BloodPlus System            │
+                    └─────────────────────────────────────┘
+                                      │
+        ┌─────────────────────────────┼─────────────────────────────┐
+        │                             │                             │
+        ▼                             ▼                             ▼
+   ┌─────────┐                   ┌─────────┐                   ┌─────────┐
+   │  Admin  │                   │Opérateur│                   │ Lecteur │
+   └────┬────┘                   └────┬────┘                   └────┬────┘
+        │                             │                             │
+        │  ┌──────────────────────────┼─────────────────────────────┤
+        │  │                          │                             │
+        │  │   ┌──────────────────────┼─────────────────────────────┤
+        │  │   │                      │                             │
+        ▼  ▼   ▼                      ▼                             ▼
+   ┌───────────────┐            ┌───────────────┐            ┌───────────────┐
+   │ Gérer         │            │ Gérer         │            │ Consulter     │
+   │ Utilisateurs  │            │ Donneurs      │◀───────────│ Données       │
+   └───────────────┘            │ Dons          │            └───────────────┘
+                                │ Stocks        │
+   ┌───────────────┐            │ Distributions │
+   │ Voir          │            └───────────────┘
+   │ Historique    │
+   └───────────────┘</code></pre>
+<h2 id="diagramme-de-séquence---enregistrement-dun-don">11.2 Diagramme
+de Séquence - Enregistrement d’un Don</h2>
+<pre><code>┌─────────┐      ┌──────────┐      ┌────────┐      ┌────────────┐      ┌─────────┐
+│Opérateur│      │ DonPanel │      │ DonDAO │      │StockSanguinDAO    │ MySQL   │
+└────┬────┘      └────┬─────┘      └───┬────┘      └──────┬─────┘      └────┬────┘
+     │                │                │                  │                 │
+     │ Clic &quot;Ajouter&quot; │                │                  │                 │
+     │───────────────▶│                │                  │                 │
+     │                │                │                  │                 │
+     │                │ ajouter(don)   │                  │                 │
+     │                │───────────────▶│                  │                 │
+     │                │                │                  │                 │
+     │                │                │ INSERT INTO dons │                 │
+     │                │                │─────────────────────────────────────▶
+     │                │                │                  │                 │
+     │                │                │                  │     OK          │
+     │                │                │◀─────────────────────────────────────
+     │                │                │                  │                 │
+     │                │ Si statut=VALIDE                  │                 │
+     │                │                │ ajouter(stock)   │                 │
+     │                │                │─────────────────▶│                 │
+     │                │                │                  │ INSERT INTO stocks
+     │                │                │                  │────────────────▶│
+     │                │                │                  │      OK         │
+     │                │                │                  │◀────────────────│
+     │                │                │                  │                 │
+     │                │   Succès       │                  │                 │
+     │                │◀───────────────│                  │                 │
+     │                │                │                  │                 │
+     │  Message OK    │                │                  │                 │
+     │◀───────────────│                │                  │                 │</code></pre>
+<hr />
+<h1 id="annexes">12. Annexes</h1>
+<h2 id="groupes-sanguins">12.1 Groupes Sanguins</h2>
+<table>
+<thead>
+<tr>
+<th>Groupe</th>
+<th>Rhésus</th>
+<th>Compatible avec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O-</td>
+<td>Négatif</td>
+<td>Donneur universel</td>
+</tr>
+<tr>
+<td>O+</td>
+<td>Positif</td>
+<td>O+, A+, B+, AB+</td>
+</tr>
+<tr>
+<td>A-</td>
+<td>Négatif</td>
+<td>A-, A+, AB-, AB+</td>
+</tr>
+<tr>
+<td>A+</td>
+<td>Positif</td>
+<td>A+, AB+</td>
+</tr>
+<tr>
+<td>B-</td>
+<td>Négatif</td>
+<td>B-, B+, AB-, AB+</td>
+</tr>
+<tr>
+<td>B+</td>
+<td>Positif</td>
+<td>B+, AB+</td>
+</tr>
+<tr>
+<td>AB-</td>
+<td>Négatif</td>
+<td>AB-, AB+</td>
+</tr>
+<tr>
+<td>AB+</td>
+<td>Positif</td>
+<td>Receveur universel</td>
+</tr>
+</tbody>
+</table>
+<h2 id="règles-métier">12.2 Règles Métier</h2>
+<h3 id="don-de-sang">Don de Sang</h3>
+<ul>
+<li>Quantité standard : 450 ml</li>
+<li>Intervalle minimum entre deux dons : 8 semaines (hommes), 12
+semaines (femmes)</li>
+<li>Âge : 18-70 ans</li>
+<li>Poids minimum : 50 kg</li>
+</ul>
+<h3 id="conservation-du-sang">Conservation du Sang</h3>
+<ul>
+<li>Durée de conservation : 42 jours à 4°C</li>
+<li>Alerte : 7 jours avant péremption</li>
+<li>Critique : 3 jours avant péremption</li>
+</ul>
+<h3 id="seuils-dalerte-stock">Seuils d’Alerte Stock</h3>
+<ul>
+<li>Normal : &gt; 10 unités</li>
+<li>Bas : 5-10 unités</li>
+<li>Critique : &lt; 5 unités</li>
+</ul>
+<h2 id="fonctionnalités-de-distribution-automatisée">12.3
+Fonctionnalités de Distribution Automatisée</h2>
+<h3 id="diminution-automatique-du-stock">Diminution Automatique du
+Stock</h3>
+<p>Lors d’une distribution de sang, le système : 1. Enregistre la
+distribution dans la table <code>distributions</code> 2. <strong>Diminue
+automatiquement le stock</strong> dans la table
+<code>stocks_sanguins</code> 3. Utilise la méthode <strong>FIFO</strong>
+(First In, First Out) : les poches les plus anciennes sont utilisées en
+premier 4. Met à jour le statut des poches épuisées en “UTILISÉ”</p>
+<h3 id="rafraîchissement-du-dashboard">Rafraîchissement du
+Dashboard</h3>
+<p>Après chaque action de distribution : - Le dashboard se rafraîchit
+automatiquement - Les statistiques de stock sont mises à jour en temps
+réel - Les alertes de stock critique sont recalculées</p>
+<h3 id="code-de-la-méthode-diminuerstock">Code de la méthode
+<code>diminuerStock()</code></h3>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">diminuerStock</span><span class="op">(</span><span class="bu">String</span> groupeSanguin<span class="op">,</span> <span class="dt">int</span> quantite<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Sélectionne les poches disponibles, triées par date de péremption</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Utilise les plus anciennes d&#39;abord (FIFO)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Marque comme &quot;UTILISÉ&quot; les poches épuisées</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Diminue partiellement les poches si nécessaire</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="codes-derreur">12.4 Codes d’Erreur</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DB001</td>
+<td>Connexion BDD échouée</td>
+<td>Vérifier MySQL et les credentials</td>
+</tr>
+<tr>
+<td>AUTH01</td>
+<td>Authentification échouée</td>
+<td>Vérifier username/password</td>
+</tr>
+<tr>
+<td>VAL01</td>
+<td>Données invalides</td>
+<td>Vérifier les champs requis</td>
+</tr>
+<tr>
+<td>STOCK01</td>
+<td>Stock insuffisant</td>
+<td>Vérifier disponibilité</td>
+</tr>
+</tbody>
+</table>
+<h2 id="contact-et-support">12.4 Contact et Support</h2>
+<ul>
+<li><strong>Développeur</strong> : [Votre Nom]</li>
+<li><strong>Email</strong> : [votre.email@example.com]</li>
+<li><strong>Version</strong> : 1.0.0</li>
+<li><strong>Date</strong> : Janvier 2026</li>
+</ul>
+<hr />
+<p><em>Document généré le 20 janvier 2026</em> <em>BloodPlus -
+Application de Gestion de Banque de Sang</em></p>
+</body>
+</html>
