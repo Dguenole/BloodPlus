@@ -147,7 +147,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## 👨‍💻 Auteur
 
-**dteach** - Projet scolaire 2026
+**dguenole** - Projet scolaire 2026
 
 ---
 
