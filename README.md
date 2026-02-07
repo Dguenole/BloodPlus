@@ -67,7 +67,7 @@ BloodPlus/
 
 1. **Cloner le repository**
    ```bash
-   git clone https://github.com/VOTRE_USERNAME/BloodPlus.git
+   git clone https://github.com/dguenole/BloodPlus.git
    cd BloodPlus
    ```
 
